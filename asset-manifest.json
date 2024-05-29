@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/LogicLikeInterview/static/css/main.94d4f583.css",
+    "main.js": "/LogicLikeInterview/static/js/main.84ab1bac.js",
+    "index.html": "/LogicLikeInterview/index.html",
+    "main.94d4f583.css.map": "/LogicLikeInterview/static/css/main.94d4f583.css.map",
+    "main.84ab1bac.js.map": "/LogicLikeInterview/static/js/main.84ab1bac.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.94d4f583.css",
+    "static/js/main.84ab1bac.js"
+  ]
+}
