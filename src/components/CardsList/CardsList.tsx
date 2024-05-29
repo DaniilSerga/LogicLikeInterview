@@ -1,5 +1,5 @@
 import React, {FC} from 'react';
-import { Props } from './type';
+import {Props} from './type';
 
 import styles from './CardsList.module.scss';
 
@@ -9,7 +9,7 @@ const CardsList: FC<Props> = ({courses}) => {
             {courses.map((course) => (
                 <div className={styles.courseItem} key={course.id}>
                     <div className={styles.imageContainer} style={{backgroundColor: course.bgColor}}>
-                        <img src={course.image} alt="" />
+                        <img src={course.image} alt={course.name} />
                     </div>
                     <p>{course.name}</p>
                 </div>
