@@ -8,16 +8,18 @@ import styles from './App.module.scss';
 const App: FC = () => {
 	const [courses, setCourses] = useState<ICourse[]>([]);
 	const [categoriesList, setCategoriesList] = useState<string[]>([]);
-	const [selectedCategory, setSelectedCategory] = useState<string>('');
+	const [selectedCategory, setSelectedCategory] = useState('');
 	const filteredCourses = useMemo(() => {
-		return selectedCategory.length > 0 ? 
+		return selectedCategory !== 'Все категории' ? 
 			courses.filter((course) => course.tags.includes(selectedCategory)) : 
 			courses;
 	}, [courses, selectedCategory])
 
 	const getCourses = useCallback(async () => {
-		const courses = await getCoursesRequest();
+		const {courses, tagsList} = await getCoursesRequest();
 		setCourses(courses);
+		setCategoriesList(tagsList);
+		setSelectedCategory(tagsList[0]);
 	}, []);
 
 	const selectCategory = (category: string) => {
@@ -28,19 +30,12 @@ const App: FC = () => {
 		getCourses();
 	}, []);
 
-	useEffect(() => {
-		if (!courses) {
-			return;
-		}
-
-		const tagsList: string[] = Array.from(new Set(courses!.map(({tags}) => [...tags]).flat()));
-		setCategoriesList(tagsList)
-	}, [courses]);
-
   	return (
   	  	<main className={styles.pageContainer}>
-  	  	  	<Sidebar categories={categoriesList} selectCategory={selectCategory} selectedCategory={selectedCategory} />
-			<CardsList courses={filteredCourses} />
+			<div className={styles.contentWrapper}>
+				<Sidebar categories={categoriesList} selectCategory={selectCategory} selectedCategory={selectedCategory} />
+				<CardsList courses={filteredCourses} />
+			</div>
   	  	</main>
   	);
 };
