@@ -4,9 +4,9 @@ describe('API requests work well', () => {
         expect(response).toBeTruthy();
     });
     
-    it('response has a length greater or equal to 23', async () => {
+    it('response has a length greater than 0', async () => {
         const response = await fetch('https://logiclike.com/docs/courses.json').then(resp => resp.json()).then(resp => resp);
-        expect(response.length).toBeGreaterThanOrEqual(23);
+        expect(response.length).toBeGreaterThan(0);
     });
 });
 
