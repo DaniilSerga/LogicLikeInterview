@@ -1,5 +1,10 @@
 .pageContainer {
-  display: flex;
-  gap: 24px;
-  padding: 24px;
+	display: flex;
+	justify-content: center;
+}
+
+.contentWrapper {
+	display: flex;
+	gap: 24px;
+	padding: 24px;
 }
