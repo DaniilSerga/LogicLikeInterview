@@ -1,0 +1,37 @@
+@import 'styles/colors';
+@import 'styles/mixins';
+
+.coursesListContainer {
+    display: grid;
+    grid-template-columns: repeat(3, 393px);
+    grid-template-rows: repeat(auto-fill, 210px);
+    gap: 18px;
+    width: 100%;
+}
+
+.courseItem {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    border-radius: 18px;
+    box-shadow: 0px 10px 13px -4px rgba($indigo, 0.188);
+
+    & > p {
+        padding: 12px 18px 18px;
+    }
+}
+
+.imageContainer {
+    box-sizing: border-box;
+    height: 162px;
+    display: flex;
+    justify-content: center;
+    padding: 8px 0;
+    border-radius: 18px 18px 0 0;
+
+    & > img {
+        width: auto;
+        height: 100%;
+        // width: auto;
+    }
+}

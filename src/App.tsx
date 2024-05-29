@@ -1,26 +1,48 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {FC, useCallback, useEffect, useMemo, useState} from 'react';
+import {CardsList, Sidebar} from 'components';
+import {getCoursesRequest} from 'services/CoursesService';
+import {ICourse } from 'types/Course';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+import styles from './App.module.scss';
+
+const App: FC = () => {
+	const [courses, setCourses] = useState<ICourse[]>([]);
+	const [categoriesList, setCategoriesList] = useState<string[]>([]);
+	const [selectedCategory, setSelectedCategory] = useState<string>('');
+	const filteredCourses = useMemo(() => {
+		return selectedCategory.length > 0 ? 
+			courses.filter((course) => course.tags.includes(selectedCategory)) : 
+			courses;
+	}, [courses, selectedCategory])
+
+	const getCourses = useCallback(async () => {
+		const courses = await getCoursesRequest();
+		setCourses(courses);
+	}, []);
+
+	const selectCategory = (category: string) => {
+		setSelectedCategory(category);
+	};
+
+	useEffect(() => {
+		getCourses();
+	}, []);
+
+	useEffect(() => {
+		if (!courses) {
+			return;
+		}
+
+		const tagsList: string[] = Array.from(new Set(courses!.map(({tags}) => [...tags]).flat()));
+		setCategoriesList(tagsList)
+	}, [courses]);
+
+  	return (
+  	  	<main className={styles.pageContainer}>
+  	  	  	<Sidebar categories={categoriesList} selectCategory={selectCategory} selectedCategory={selectedCategory} />
+			<CardsList courses={filteredCourses} />
+  	  	</main>
+  	);
+};
 
 export default App;
