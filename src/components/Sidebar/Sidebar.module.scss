@@ -3,11 +3,12 @@
 .categoriesList {
     display: flex;
     flex-direction: column;
+    min-width: 266px;
+    height: min-content;
     padding: 12px;
     box-sizing: border-box;
     border-radius: 12px;
     border: 1px solid $languidLavender;
-    height: min-content;
 
     & > div > p {
         text-wrap: nowrap;

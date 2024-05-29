@@ -39,8 +39,10 @@ const App: FC = () => {
 
   	return (
   	  	<main className={styles.pageContainer}>
-  	  	  	<Sidebar categories={categoriesList} selectCategory={selectCategory} selectedCategory={selectedCategory} />
-			<CardsList courses={filteredCourses} />
+			<div className={styles.contentWrapper}>
+				<Sidebar categories={categoriesList} selectCategory={selectCategory} selectedCategory={selectedCategory} />
+				<CardsList courses={filteredCourses} />
+			</div>
   	  	</main>
   	);
 };
