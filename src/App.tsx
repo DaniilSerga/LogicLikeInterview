@@ -19,6 +19,7 @@ const App: FC = () => {
 		const {courses, tagsList} = await getCoursesRequest();
 		setCourses(courses);
 		setCategoriesList(tagsList);
+		setSelectedCategory(tagsList[0]);
 	}, []);
 
 	const selectCategory = (category: string) => {
